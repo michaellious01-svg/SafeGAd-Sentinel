@@ -1,18 +1,22 @@
 name: SafeGAd Sentinel Forge
 on: [push, workflow_dispatch]
+
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
+        # This v1.6.1 stable version fixes the 'invalid user' bug
+        uses: ArtemSBulgakov/buildozer-action@v1.6.1
         id: buildozer
         with:
           command: buildozer android debug
           buildozer_version: stable
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: SafeGAd-V1-5-2-APK
-          path: ${{ steps.buildozer.outputs.filename }}
+          path: bin/*.apk
