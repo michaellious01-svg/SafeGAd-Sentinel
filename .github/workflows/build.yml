@@ -3,14 +3,13 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        # This v1.6.1 stable version fixes the 'invalid user' bug
+        # Using v1.6.1 to kill the 'invalid user' error permanently
         uses: ArtemSBulgakov/buildozer-action@v1.6.1
-        id: buildozer
         with:
           command: buildozer android debug
           buildozer_version: stable
@@ -18,5 +17,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: SafeGAd-V1-5-2-APK
+          name: SafeGAd-Sentinel-APK
           path: bin/*.apk
