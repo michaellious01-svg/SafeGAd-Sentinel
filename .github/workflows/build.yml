@@ -3,13 +3,13 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        # Using the root v1 tag to ensure the cloud runner finds the engine
-        uses: ArtemSBulgakov/buildozer-action@v1
+        # This official tool kills the 'chown' error forever
+        uses: kivy/buildozer-action@master
         with:
           command: buildozer android debug
           buildozer_version: stable
