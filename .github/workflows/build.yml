@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        # Uses the absolute stable root version to bypass tag errors
+        # Using the root v1 tag to ensure the cloud runner finds the engine
         uses: ArtemSBulgakov/buildozer-action@v1
         with:
           command: buildozer android debug
