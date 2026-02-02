@@ -8,8 +8,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        # Using v1.6.1 to kill the 'invalid user' error permanently
-        uses: ArtemSBulgakov/buildozer-action@v1.6.1
+        # This version is the stable 'bridge' that bypasses the permission bug
+        uses: ArtemSBulgakov/buildozer-action@v1.5.0
         with:
           command: buildozer android debug
           buildozer_version: stable
